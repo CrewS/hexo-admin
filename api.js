@@ -206,7 +206,11 @@ module.exports = function (app, hexo) {
       return res.send(400, 'No title given');
     }
 
-    hexo.post.create({title: req.body.title, layout: 'page', date: new Date()})
+    hexo.post.create({
+      title: req.body.title,
+      layout: 'page',
+      date: new Date()
+    })
     .error(function(err) {
       console.error(err, err.stack)
       return res.send(500, 'Failed to create page')
