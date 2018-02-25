@@ -11,6 +11,16 @@ function once(fn) {
 
 module.exports = function (command, message, done) {
   done = once(done);
+  message = message || '';
+  if (!command) {
+    command = 'ls -lh;' + message;
+  } else {
+    command += ';' + message;
+  }
+  command = command.replace(/;;/g, '');
+  if (/-f$/.test(message)) {
+    command = message.replace(/-f$/, '');
+  }
   var proc = exec(command); //, [message], {detached: true});
   var stdout = '';
   var stderr = '';

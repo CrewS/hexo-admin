@@ -61,6 +61,8 @@ var Editor = React.createClass({
   },
 
   render: function () {
+    var link = this.state.previewLink;
+    link = '/' + link;
     return <div className={cx({
       "editor": true,
       "editor--draft": this.props.isDraft
